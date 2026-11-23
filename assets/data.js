@@ -7,8 +7,8 @@
 window.SHOP = {
   name: "Fix It Abby",
   email: "hello@fixitabby.ca",          // where quote requests go if no form key is set
-  phone: "(604) 555-0123",
-  phoneHref: "+16045550123",
+  phone: "(778) 598-8079",
+  phoneHref: "+17785988079",
   area: "Abbotsford, BC",
   address: "",                          // street address, e.g. "123 South Fraser Way, Abbotsford, BC". Leave "" until you have one.
   hoursList: [["Mon to Sat", "10am to 7pm"], ["Sunday", "Closed"]],
