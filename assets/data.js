@@ -5,8 +5,8 @@
 
 /* Shop details: change these once and every page updates. */
 window.SHOP = {
-  name: "Fix It Abby",
-  email: "hello@fixitabby.ca",          // where quote requests go if no form key is set
+  name: "Cellunet",
+  email: "",                            // no public shop email
   phone: "(778) 598-8079",
   phoneHref: "+17785988079",
   area: "Abbotsford, BC",
@@ -17,13 +17,13 @@ window.SHOP = {
 
   /* Where quote requests go:
      1. apiEndpoint: the site's own server function (api/quote.js), which emails the request
-        WITH the customer's photos through Fix It Abby's Resend account. Its key lives in Vercel, not here.
+        WITH the customer's photos through Cellunet's Resend account. Its key lives in Vercel, not here.
      2. web3formsKey: backup if that ever fails. Sends the request text only. */
   apiEndpoint: "/api/quote",
   web3formsKey: "20294cc0-f200-4fc4-8934-a6971cbc9e74",
 
   /* The message that opens in the customer's Messages app when they tap "Text us a photo". */
-  smsMessage: "Hi Fix It Abby! I'd like a free quote.\nMy iPhone: \nWhat's wrong: \n(Photo attached)",
+  smsMessage: "Hi Cellunet! I'd like a free quote.\nMy iPhone: \nWhat's wrong: \n(Photo attached)",
 
   /* The four sticky notes under the hero. Delete any line you don't want to promise. */
   notes: [

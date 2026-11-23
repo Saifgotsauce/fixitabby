@@ -2,7 +2,7 @@
    Setup on Vercel (Project > Settings > Environment Variables):
      RESEND_API_KEY  your key from resend.com (free plan is enough)
      QUOTE_TO        the inbox that should receive quote requests
-     QUOTE_FROM      optional. Until you verify your own domain on Resend, use "Fix It Abby <onboarding@resend.dev>":
+     QUOTE_FROM      optional. Until you verify your own domain on Resend, use "Cellunet <onboarding@resend.dev>":
                      that sender only delivers to the email the Resend account was made with. */
 
 const MAX_PHOTOS = 3;
@@ -30,7 +30,7 @@ export default async function handler(req, res) {
     method: "POST",
     headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
     body: JSON.stringify({
-      from: process.env.QUOTE_FROM || "Fix It Abby <onboarding@resend.dev>",
+      from: process.env.QUOTE_FROM || "Cellunet <onboarding@resend.dev>",
       to: [to],
       reply_to: replyTo || undefined,
       subject: `Free quote request: ${fields["iPhone model"]}${attachments.length ? ` (${attachments.length} photo${attachments.length > 1 ? "s" : ""})` : ""}`,

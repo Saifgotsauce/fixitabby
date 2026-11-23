@@ -38,7 +38,6 @@
               <li>${S.quoteHours}</li>
               <li>${S.hours}</li>
               <li><a href="tel:${S.phoneHref}">${S.phone}</a></li>
-              <li><a href="mailto:${S.email}">${S.email}</a></li>
             </ul>
           </div>
           <div>
@@ -60,7 +59,7 @@
             </ul>
           </div>
         </div>
-        <div class="bigmark" aria-hidden="true">Fix It Abby<span>.</span></div>
+        <div class="bigmark" aria-hidden="true">Cellunet<span>.</span></div>
         <div class="legal">
           <span>&copy; ${new Date().getFullYear()} ${S.name}. iPhone repair in Abbotsford, BC.</span>
           <span>Independent repair shop, not affiliated with Apple. iPhone is a trademark of Apple Inc.</span>
@@ -238,7 +237,7 @@
       set("#lt-reply", form.phone.value.trim() || form.email.value.trim(), "phone or email");
       const iss = $$('input[name="issues"]:checked', form).map(c => c.dataset.short).join(", ");
       const nm = form.name.value.trim();
-      $("#text-instead").href = smsHref(`Hi Fix It Abby! I'd like a free quote.\nMy iPhone: ${m || ""}\nWhat's wrong: ${iss}${nm ? `\nName: ${nm}` : ""}\n(Photo attached)`);
+      $("#text-instead").href = smsHref(`Hi Cellunet! I'd like a free quote.\nMy iPhone: ${m || ""}\nWhat's wrong: ${iss}${nm ? `\nName: ${nm}` : ""}\n(Photo attached)`);
     };
     form.addEventListener("input", live); form.addEventListener("change", live); live();
 
