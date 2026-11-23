@@ -449,3 +449,12 @@ p{margin:0}
 .visit-body p+p{margin-top:12px;color:var(--muted);font-size:18px;max-width:32em}
 .visit-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
 @media (max-width:860px){.visit{grid-template-columns:1fr;gap:32px}.door{max-width:380px}}
+
+/* ---------- Service area: a blue road sign ---------- */
+.area-sign{margin-top:30px;background:var(--rasp);color:#fff;border-radius:10px;padding:20px 26px 22px;
+  box-shadow:inset 0 0 0 5px var(--rasp),inset 0 0 0 8px #fff,0 14px 24px -16px rgba(10,25,60,.6);max-width:520px}
+.shop .body .area-k{font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:.02em;color:#CFE0FF;margin:4px 0 6px;max-width:none}
+.area-sign ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:2px 24px}
+.area-sign li{font-family:var(--display);font-weight:700;font-size:30px;line-height:1.25;display:flex;align-items:center;gap:10px}
+.area-sign li::before{content:"";width:9px;height:9px;border-radius:50%;background:#fff;flex:none}
+@media (max-width:500px){.area-sign{padding:16px 18px 18px}.area-sign li{font-size:24px}}
