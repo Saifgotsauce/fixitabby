@@ -339,7 +339,7 @@
         fd.append("_subject", subject); fd.append("_template", "table"); fd.append("_captcha", "false");
         if (email) fd.append("_replyto", email);
         for (const [i, p] of photos.entries()) fd.append(`attachment${i ? i + 1 : ""}`, await (await fetch(p.data)).blob(), `damage-${i + 1}.jpg`);
-        const res = await timedFetch(`https://formsubmit.co/ajax/${S.formsubmitTo}`, { method: "POST", headers: { Accept: "application/json" }, body: fd }, 20000);
+        const res = await timedFetch(`https://formsubmit.co/ajax/${S.formsubmitTo}`, { method: "POST", headers: { Accept: "application/json" }, body: fd }, 60000);
         const out = await res.json();
         if (String(out.success) !== "true") throw new Error(out.message);
       };
