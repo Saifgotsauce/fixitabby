@@ -15,12 +15,13 @@ window.SHOP = {
   hours: "Repairs Mon to Sat, 10am to 7pm",
   quoteHours: "Quote requests 24/7",
 
-  /* Where quote requests go. Tried in this order:
-     1. formsubmitTo: FormSubmit.co. Free, no account, and it emails you the customer's photos.
+  /* Where quote requests go. How they are sent:
+     1. web3formsKey: sends every quote request (fast and reliable).
+     2. formsubmitTo: FormSubmit.co, free with no account. Sends the customer's photos in a second email,
+        and takes over if Web3Forms is ever down.
         The very first request sends an "Activate form" email to this address: click it once.
         After that, FormSubmit emails you a random code: paste it here instead of the email
-        address so the address isn't visible in the website's code.
-     2. web3formsKey: backup. Sends the text of the request only, no photos. */
+        address so the address isn't visible in the website's code. */
   formsubmitTo: "saiffahad4545@gmail.com",
   web3formsKey: "20294cc0-f200-4fc4-8934-a6971cbc9e74",
 

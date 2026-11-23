@@ -318,37 +318,55 @@
       const first = name.split(" ")[0], phoneModel = model === "Not sure" ? "iPhone" : model;
       const okMsg = extra => finish(`Thanks, ${first}. We've got your tag.`, `We're checking parts for your ${phoneModel} now. Expect ${how} from us with your price and quote code.${extra || ""}`);
 
-      /* Route 1: FormSubmit, which emails the photos too */
-      let sent = false;
-      if (S.formsubmitTo) {
-        try {
-          const fd = new FormData();
-          Object.entries(data).forEach(([k, v]) => fd.append(k, v));
-          fd.append("_subject", `Free quote request: ${model}${photos.length ? ` (${photos.length} photo${photos.length > 1 ? "s" : ""})` : ""}`);
-          fd.append("_template", "table");
-          fd.append("_captcha", "false");
-          if (email) fd.append("_replyto", email);
-          for (const [i, p] of photos.entries()) fd.append(`attachment${i ? i + 1 : ""}`, await (await fetch(p.data)).blob(), `damage-${i + 1}.jpg`);
-          const res = await fetch(`https://formsubmit.co/ajax/${S.formsubmitTo}`, { method: "POST", headers: { Accept: "application/json" }, body: fd });
-          const out = await res.json();
-          if (res.ok && String(out.success) === "true") sent = true;
-        } catch (x) {}
-      }
-      if (sent) return okMsg();
+      /* Every request gets a time limit, so the button can never hang */
+      const timedFetch = (url, opts, ms) => {
+        const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), ms);
+        return fetch(url, { ...opts, signal: ctl.signal }).finally(() => clearTimeout(t));
+      };
+      const viaWeb3 = async () => {
+        const res = await timedFetch("https://api.web3forms.com/submit", {
+          method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({ access_key: S.web3formsKey, subject: `Free quote request: ${model}`, from_name: S.name, replyto: email || undefined, ...data,
+            "Photos": photos.length ? `${photos.length} photo(s), sent in a separate email` : "None" })
+        }, 15000);
+        const out = await res.json();
+        if (!out.success) throw new Error(out.message);
+      };
+      const viaFormSubmit = async (subject, withFields) => {
+        const fd = new FormData();
+        if (withFields) Object.entries(data).forEach(([k, v]) => fd.append(k, v));
+        else { fd.append("Name", name); fd.append("iPhone model", model); fd.append("Phone", phone || "Not given"); fd.append("Email", email || "Not given"); }
+        fd.append("_subject", subject); fd.append("_template", "table"); fd.append("_captcha", "false");
+        if (email) fd.append("_replyto", email);
+        for (const [i, p] of photos.entries()) fd.append(`attachment${i ? i + 1 : ""}`, await (await fetch(p.data)).blob(), `damage-${i + 1}.jpg`);
+        const res = await timedFetch(`https://formsubmit.co/ajax/${S.formsubmitTo}`, { method: "POST", headers: { Accept: "application/json" }, body: fd }, 20000);
+        const out = await res.json();
+        if (String(out.success) !== "true") throw new Error(out.message);
+      };
+      const textPhotos = `<a href="${smsHref(`Photos for my ${phoneModel} quote (${first})`)}">text them to us</a>`;
 
-      /* Route 2: Web3Forms, text only */
       if (S.web3formsKey) {
-        try {
-          const res = await fetch("https://api.web3forms.com/submit", {
-            method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
-            body: JSON.stringify({ access_key: S.web3formsKey, subject: `Free quote request: ${model}`, from_name: S.name, replyto: email || undefined, ...data, "Photos": photos.length ? `${photos.length} photo(s) chosen but not attached` : "None" })
-          });
-          const out = await res.json();
-          if (!out.success) throw new Error(out.message);
-          okMsg(photos.length ? ` Your photos couldn't come through this form, so <a href="${smsHref(`Photos for my ${phoneModel} quote (${first})`)}">text them to us</a> and we'll add them to your quote.` : "");
-        } catch (x) {
+        /* 1. The request itself goes through Web3Forms: fast and reliable */
+        let ok = false;
+        try { await viaWeb3(); ok = true; } catch (x) {}
+        /* 2. If that failed, try FormSubmit with everything */
+        if (!ok && S.formsubmitTo) {
+          try { await viaFormSubmit(`Free quote request: ${model}`, true); okMsg(); return; } catch (x) {}
+        }
+        if (!ok) {
           btn.disabled = false; btn.textContent = "Send my free quote request";
-          fail(`Your request didn't send. Check your connection and try again, or call us at ${S.phone}.`);
+          return fail(`Your request didn't send. Check your connection and try again, or call us at ${S.phone}.`);
+        }
+        if (!photos.length) return okMsg();
+        /* 3. Photos follow in their own email through FormSubmit */
+        okMsg(`<span id="photo-status"> Sending your photos now...</span>`);
+        const ps = () => $("#photo-status");
+        try {
+          if (!S.formsubmitTo) throw new Error("no photo route");
+          await viaFormSubmit(`Photos for ${first}'s ${phoneModel} quote`, false);
+          ps().textContent = " Your photos came through too.";
+        } catch (x) {
+          ps().innerHTML = ` Your photos didn't upload, so please ${textPhotos} instead.`;
         }
       } else {
         const body = Object.entries(data).map(([k, v]) => `${k}: ${v}`).join("\n");
