@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Quote | Fix It Abby iPhone Repair</title>
+<meta name="description" content="Tell us your iPhone and what's wrong, and we'll send you a free quote with our best price. No obligation.">
+<meta name="theme-color" content="#EDEFEE">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700;800;900&family=Permanent+Marker&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<div data-header="quote"></div>
+
+<main>
+  <section class="page-head">
+    <div class="wrap">
+      <div class="crumb"><a href="index.html">Home</a> / Free quote</div>
+      <h1>Get a free quote</h1>
+      <p>Tell us your iPhone and what's wrong. We'll check parts and send you our best price with a quote code. Just asking is completely fine.</p>
+    </div>
+  </section>
+
+  <div class="wrap quote-layout">
+    <div>
+      <form class="qform" id="quote-form" novalidate>
+        <p class="form-error" id="form-error" role="alert"></p>
+
+        <fieldset>
+          <legend><span class="n">1</span>Your iPhone</legend>
+          <div class="field">
+            <label for="f-model">Model</label>
+            <select id="f-model" name="model"></select>
+            <span class="hint">Find it in Settings, then General, then About.</span>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend><span class="n">2</span>What's wrong?</legend>
+          <div class="field">
+            <span class="lbl" id="issues-lbl">Tap everything that applies</span>
+            <div class="chips" id="f-issues" role="group" aria-labelledby="issues-lbl"></div>
+          </div>
+          <div class="field">
+            <span class="lbl" id="photos-lbl">Photos of the damage <span class="hint">Optional, up to 3. Helps us quote faster.</span></span>
+            <label class="drop" id="drop">
+              <input id="f-photos" type="file" accept="image/*" multiple aria-labelledby="photos-lbl">
+              <span class="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg></span>
+              <span><b>Add photos</b>Take a picture or choose from your camera roll</span>
+            </label>
+            <div class="thumbs" id="thumbs"></div>
+          </div>
+          <div class="field">
+            <label for="f-details">Anything else we should know? <span class="hint">Optional</span></label>
+            <textarea id="f-details" name="details" placeholder="Dropped it yesterday. Top corner is cracked and touch is glitchy."></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend><span class="n">3</span>Where do we send your quote?</legend>
+          <div class="field">
+            <label for="f-name">Name</label>
+            <input id="f-name" name="name" autocomplete="name" placeholder="First name is fine">
+          </div>
+          <div class="row2">
+            <div class="field">
+              <label for="f-phone">Phone</label>
+              <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="604 000 0000">
+            </div>
+            <div class="field">
+              <label for="f-email">Email</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@email.com">
+            </div>
+          </div>
+          <p class="hint" style="margin:-6px 0 18px">You only need one of the two.</p>
+          <div class="field">
+            <span class="lbl" id="reply-lbl">Best way to reach you</span>
+            <div class="seg" role="radiogroup" aria-labelledby="reply-lbl">
+              <label><input type="radio" name="reply" value="Text" checked><span>Text</span></label>
+              <label><input type="radio" name="reply" value="Call"><span>Call</span></label>
+              <label><input type="radio" name="reply" value="Email"><span>Email</span></label>
+            </div>
+          </div>
+        </fieldset>
+
+        <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <div class="submit-row">
+          <button class="btn" id="send" type="submit">Send my free quote request</button>
+          <small>Free, no obligation. We only use your details to send your quote.</small>
+        </div>
+        <p class="or-text">Rather text us? <a id="text-instead" href="#">Open Messages with this filled in</a> and attach your photos there.</p>
+      </form>
+
+      <div class="done" id="done" role="status">
+        <h2 id="done-title">Thanks.</h2>
+        <p id="done-msg"></p>
+        <div class="actions">
+          <a class="btn" id="done-mail" href="#" hidden>Open my email app</a>
+          <a class="btn btn-line" href="index.html">Back to home</a>
+        </div>
+      </div>
+    </div>
+
+    <aside class="qside" aria-label="Your repair tag">
+      <div class="tag-hang">
+        <svg class="hook" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="9" r="5.5" fill="#3A3530"/><path d="M20 9v16a6 6 0 0 0 12 0" fill="none" stroke="#8E949A" stroke-width="3.4" stroke-linecap="round"/><path d="M20 9v16a6 6 0 0 0 12 0" fill="none" stroke="#D6DADD" stroke-width="1.2" stroke-linecap="round" transform="translate(-.8 -.4)"/></svg>
+        <svg class="string" viewBox="0 0 120 98" aria-hidden="true"><path d="M65 24C42 46 86 66 60 98" fill="none" stroke="#6E6553" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <div class="tag-shadow">
+          <div class="tag">
+            <span class="tag-hole"></span>
+            <div class="tag-brand">Fix It Abby<small>Repair tag</small></div>
+            <div class="tag-row"><span class="k">iPhone</span><span class="v" id="lt-model"></span></div>
+            <div class="tag-row"><span class="k">Problem</span><span class="v" id="lt-issue"></span></div>
+            <div class="tag-row"><span class="k">Name</span><span class="v" id="lt-name"></span></div>
+            <div class="tag-row"><span class="k">Reach at</span><span class="v" id="lt-reply"></span></div>
+            <div class="tag-stub">
+              <span class="k">Quote<b>No obligation, ever</b></span>
+              <span class="stamp">FREE</span>
+            </div>
+            <span class="stamp big">SENT</span>
+          </div>
+          <div class="tag-photos" id="tag-photos" aria-hidden="true">
+          </div>
+        </div>
+      </div>
+      <div class="status-line">
+        <b>Already dropped it off?</b>
+        Text your quote code to <a data-shop="phone" href="#"></a> and we'll tell you where it's at.
+      </div>
+      <div class="qcontact">
+        <p>Rather talk to someone? Call <a data-shop="phone" href="#"></a> or email <a data-shop="email" href="#"></a>.</p>
+        <p style="margin-top:6px"><b data-shop="quoteHours"></b>. <span data-shop="hours"></span>.</p>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<div data-footer></div>
+<script src="assets/data.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>

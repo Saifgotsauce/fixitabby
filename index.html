@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fix It Abby | iPhone Repair in Abbotsford</title>
+<meta name="description" content="Abbotsford's iPhone-only repair shop. Screens, batteries, back glass, charging ports, cameras and water damage on every iPhone. Every quote is free.">
+<meta name="theme-color" content="#EDEFEE">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700;800;900&family=Permanent+Marker&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<div data-header="home"></div>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <i class="screw s1"></i><i class="screw s2"></i><i class="screw s3"></i><i class="screw s4"></i>
+        <span class="open-now is-open"><i></i><span>Free quotes, 24/7</span></span>
+        <h1><span>iPhone broke?</span><span>We'll fix it.</span></h1>
+        <p class="hero-lede">We're a small Abbotsford shop that only fixes iPhones. Screens, batteries, back glass, charging ports, cameras and water damage, on every model from the iPhone 5 to the iPhone Duo. Fill out the tag and we'll send you a free quote.</p>
+        <div class="hero-actions">
+          <a class="btn" href="quote.html">Get a free quote</a>
+          <a class="text-photo" data-sms href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg>Or text us a photo of the damage</a>
+        </div>
+      </div>
+
+      <div class="tag-hang">
+        <svg class="hook" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="9" r="5.5" fill="#3A3530"/><path d="M20 9v16a6 6 0 0 0 12 0" fill="none" stroke="#8E949A" stroke-width="3.4" stroke-linecap="round"/><path d="M20 9v16a6 6 0 0 0 12 0" fill="none" stroke="#D6DADD" stroke-width="1.2" stroke-linecap="round" transform="translate(-.8 -.4)"/></svg>
+        <svg class="string" viewBox="0 0 120 98" aria-hidden="true"><path d="M65 24C42 46 86 66 60 98" fill="none" stroke="#6E6553" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <div class="tag-shadow">
+          <form class="tag" id="hero-tag" aria-label="Start a free quote">
+            <span class="tag-hole"></span>
+            <div class="tag-brand">Fix It Abby<small>Repair tag</small></div>
+            <label class="tag-row" for="t-model"><span class="k">iPhone</span><select id="t-model"></select></label>
+            <label class="tag-row" for="t-issue"><span class="k">Problem</span><select id="t-issue"></select></label>
+            <button class="btn" type="submit">Get my free quote</button>
+            <div class="tag-stub">
+              <span class="k">Quote<b>No obligation, ever</b></span>
+              <span class="stamp">FREE</span>
+            </div>
+          </form>
+        </div>
+        <p class="tag-note">Takes about 30 seconds. Just asking is fine.</p>
+      </div>
+    </div>
+    <div class="wrap notes-wrap"><ul class="notes" id="notes" aria-label="Good to know"></ul></div>
+  </section>
+
+  <section class="section" id="how">
+    <div class="wrap">
+      <div class="head">
+        <h2>How it works</h2>
+        <p>Every repair starts with a free quote. You don't pay anything until you've seen the price and said yes.</p>
+      </div>
+      <ol class="steps">
+        <li><div class="n">1</div><h3>Fill out the tag</h3><p>Tell us your iPhone and what's wrong. It takes about 30 seconds.</p></li>
+        <li><div class="n">2</div><h3>Get your price</h3><p>We check parts for your model and text you our best price with a quote code.</p></li>
+        <li><div class="n">3</div><h3>Drop it off</h3><p>Bring in your iPhone and your quote code. We'll text you when it's ready to pick up.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="repairs">
+    <div class="wrap">
+      <div class="head">
+        <h2>What we fix</h2>
+        <p>Tap a repair to start your free quote.</p>
+      </div>
+      <div class="board-wrap">
+        <div class="board">
+          <div class="board-title">IPHONE REPAIRS</div>
+          <div id="board-rows"></div>
+        </div>
+        <div class="board-side">
+          <h3>Why no prices?</h3>
+          <p>Part prices change all the time, and every iPhone model is a little different. A price list would be out of date by next week.</p>
+          <p>So we look up your exact model and send you our best price instead. It's free, and you're not committing to anything.</p>
+          <a class="btn" href="quote.html">Get a free quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section models" id="models">
+    <div class="wrap">
+      <div class="head">
+        <h2>Which iPhone do you have?</h2>
+        <p>Tap yours to see everything we fix on it.</p>
+      </div>
+      <div class="gens" id="gens" role="tablist" aria-label="iPhone generations"></div>
+      <div class="mat"><div class="shelf" id="shelf"></div></div>
+      <div class="mat-foot">
+        <span>Not sure? On your iPhone, open Settings, then General, then About.</span>
+        <a href="repairs.html">See every model</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap shop">
+      <div class="body">
+        <h2>A small shop that only does iPhones.</h2>
+        <p>Most repair places fix everything from laptops to game consoles. We stick to iPhones, so we see the same models every day and know exactly where each one tends to break.</p>
+        <p>We're local, and we'd rather give you a straight answer than an upsell. If a repair isn't worth the money, we'll tell you.</p>
+        <ul class="towns" aria-label="Areas we serve">
+          <li>Abbotsford</li><li>Mission</li><li>Aldergrove</li><li>Langley</li><li>Chilliwack</li>
+        </ul>
+      </div>
+      <div class="shop-photo">
+        <img src="https://images.unsplash.com/photo-1639776739297-f7e1f21526f4?auto=format&fit=crop&w=1000&q=80" alt="Technician in gloves working on an iPhone" onerror="this.parentNode.classList.add('nophoto');this.remove()">
+        <div class="fallback" aria-hidden="true"><div class="pair"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="reviews" style="padding-top:0" hidden>
+    <div class="wrap">
+      <div class="head"><h2>What Abbotsford says</h2></div>
+      <div class="reviews" id="review-list"></div>
+    </div>
+  </section>
+
+  <section class="section" id="visit" style="padding-top:0">
+    <div class="wrap visit">
+      <div class="door" aria-label="Opening hours">
+        <div class="door-top">Fix It Abby</div>
+        <div class="door-big">Quotes<br>24/7</div>
+        <dl class="door-hours" id="door-hours"></dl>
+        <div class="door-foot">iPhone repair</div>
+      </div>
+      <div class="visit-body">
+        <h2>Come by the shop</h2>
+        <p class="visit-addr" data-shop="addressLine"></p>
+        <p>Send a quote request any time, day or night. Repairs happen during shop hours, and walk-ins are welcome.</p>
+        <div class="visit-actions">
+          <a class="btn" data-directions href="#">Get directions</a>
+          <a class="btn btn-line" data-shop="phone" href="#"></a>
+          <a class="btn btn-line" data-sms href="#">Text us a photo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq" style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><h2>Questions</h2></div>
+      <div class="faq">
+        <details open>
+          <summary>How much will my repair cost?</summary>
+          <p>It depends on your model and what's broken, so we quote each repair on its own. Fill out the quote form and we'll send you our best price. It's free.</p>
+        </details>
+        <details>
+          <summary>Is the quote really free?</summary>
+          <p>Yes. Ask about as many repairs as you want. You only pay if you decide to go ahead.</p>
+        </details>
+        <details>
+          <summary>How long does a repair take?</summary>
+          <p>Most screens and batteries are done the same day. Water damage and board repairs take longer, and we'll tell you how long when we send your quote.</p>
+        </details>
+        <details>
+          <summary>Will I lose my photos?</summary>
+          <p>Screen, battery, port and camera repairs don't touch your data. It's still a good idea to back up to iCloud before any repair.</p>
+        </details>
+        <details>
+          <summary>My iPhone got wet. What should I do?</summary>
+          <p>Turn it off, don't charge it, and skip the bag of rice. Send us a quote request right away and pick Water damage. The sooner we open it up, the better.</p>
+        </details>
+        <details>
+          <summary>I already dropped it off. How's it going?</summary>
+          <p>Text your quote code to <a data-shop="phone" href="#"></a> and we'll tell you where it's at.</p>
+        </details>
+        <details>
+          <summary>Do I need an appointment?</summary>
+          <p>No, walk-ins are welcome. Getting a free quote first means we can have the right part ready, so the repair goes faster.</p>
+        </details>
+        <details>
+          <summary>How do I find my model?</summary>
+          <p>Open Settings, tap General, then About. If your iPhone won't turn on, pick "I'm not sure" on the form and we'll figure it out.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="closer">
+      <p>Not sure if it's worth fixing? Ask us. It's free.</p>
+      <a class="btn" href="quote.html">Get a free quote</a>
+    </div>
+  </div>
+</main>
+
+<div data-footer></div>
+<script src="assets/data.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>
