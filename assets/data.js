@@ -10,9 +10,9 @@ window.SHOP = {
   phone: "(778) 598-8079",
   phoneHref: "+17785988079",
   area: "Abbotsford, BC",
-  address: "",                          // street address, e.g. "123 South Fraser Way, Abbotsford, BC". Leave "" until you have one.
-  hoursList: [["Mon to Sat", "10am to 7pm"], ["Sunday", "Closed"]],
-  hours: "Repairs Mon to Sat, 10am to 7pm",
+  address: "34954 Cassiar Ave, Abbotsford, BC V2S 7G8",
+  hoursList: [["Every day", "9am to 9pm"]],
+  hours: "Repairs every day, 9am to 9pm",
   quoteHours: "Quote requests 24/7",
 
   /* Where quote requests go:
