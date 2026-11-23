@@ -29,8 +29,8 @@ window.SHOP = {
   notes: [
     { title: "Warranty on every repair", body: "Parts and labour. We'll tell you exactly how long it covers with your quote.", color: "pink" },
     { title: "Seen a cheaper quote?", body: "Show us a written quote from another Abbotsford shop for the same repair and we'll try to beat it.", color: "blue" },
-    { title: "UFV students", body: "Show your student card when you drop off your iPhone and get a student discount.", color: "yellow" },
-    { title: "Same day, walk-ins welcome", body: "Most screens and batteries are done the same day. No appointment needed.", color: "green" }
+    { title: "UFV students", body: "Show your student card when we fix your iPhone and get a student discount.", color: "yellow" },
+    { title: "We come to you", body: "Most repairs are done at your home or work within a few hours. Bigger jobs you can drop off.", color: "green" }
   ]
 };
 
@@ -142,7 +142,7 @@ window.REPAIRS = [
       : m.bio === "touchid" ? "Selfie camera problems, or a home button or Touch ID that stopped working."
       : "Selfie camera problems or a stuck, unresponsive home button." },
   { id: "water", name: "Water & liquid damage", short: "Water damage",
-    blurb: "Dropped in the sink, the pool or the toilet. Bring it in fast and don't charge it.",
+    blurb: "Dropped in the sink, the pool or the toilet. Get in touch fast and don't charge it.",
     forModel: () => "Liquid exposure of any kind. Power it off, don't charge it, and get in touch quickly." },
   { id: "audio", name: "Speaker, earpiece & mic", short: "Speaker & mic",
     blurb: "People can't hear you, calls sound muffled, or the speaker crackles.",
