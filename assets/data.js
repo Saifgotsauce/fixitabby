@@ -15,14 +15,11 @@ window.SHOP = {
   hours: "Repairs Mon to Sat, 10am to 7pm",
   quoteHours: "Quote requests 24/7",
 
-  /* Where quote requests go. How they are sent:
-     1. web3formsKey: sends every quote request (fast and reliable).
-     2. formsubmitTo: FormSubmit.co, free with no account. Sends the customer's photos in a second email,
-        and takes over if Web3Forms is ever down.
-        The very first request sends an "Activate form" email to this address: click it once.
-        After that, FormSubmit emails you a random code: paste it here instead of the email
-        address so the address isn't visible in the website's code. */
-  formsubmitTo: "saiffahad4545@gmail.com",
+  /* Where quote requests go:
+     1. apiEndpoint: the site's own server function (api/quote.js), which emails the request
+        WITH the customer's photos through Fix It Abby's Resend account. Its key lives in Vercel, not here.
+     2. web3formsKey: backup if that ever fails. Sends the request text only. */
+  apiEndpoint: "/api/quote",
   web3formsKey: "20294cc0-f200-4fc4-8934-a6971cbc9e74",
 
   /* The message that opens in the customer's Messages app when they tap "Text us a photo". */

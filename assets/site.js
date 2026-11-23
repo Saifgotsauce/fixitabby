@@ -327,47 +327,33 @@
         const res = await timedFetch("https://api.web3forms.com/submit", {
           method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
           body: JSON.stringify({ access_key: S.web3formsKey, subject: `Free quote request: ${model}`, from_name: S.name, replyto: email || undefined, ...data,
-            "Photos": photos.length ? `${photos.length} photo(s), sent in a separate email` : "None" })
+            "Photos": photos.length ? `${photos.length} photo(s) chosen but not attached` : "None" })
         }, 15000);
         const out = await res.json();
         if (!out.success) throw new Error(out.message);
       };
-      const viaFormSubmit = async (subject, withFields) => {
-        const fd = new FormData();
-        if (withFields) Object.entries(data).forEach(([k, v]) => fd.append(k, v));
-        else { fd.append("Name", name); fd.append("iPhone model", model); fd.append("Phone", phone || "Not given"); fd.append("Email", email || "Not given"); }
-        fd.append("_subject", subject); fd.append("_template", "table"); fd.append("_captcha", "false");
-        if (email) fd.append("_replyto", email);
-        for (const [i, p] of photos.entries()) fd.append(`attachment${i ? i + 1 : ""}`, await (await fetch(p.data)).blob(), `damage-${i + 1}.jpg`);
-        const res = await timedFetch(`https://formsubmit.co/ajax/${S.formsubmitTo}`, { method: "POST", headers: { Accept: "application/json" }, body: fd }, 60000);
+      const viaApi = async () => {
+        const res = await timedFetch(S.apiEndpoint, {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ fields: data, replyTo: email || null, photos: photos.map(p => ({ name: p.name, data: p.data.split(",")[1] })) })
+        }, 45000);
         const out = await res.json();
-        if (String(out.success) !== "true") throw new Error(out.message);
+        if (!res.ok || !out.success) throw new Error(out.detail || out.message);
       };
       const textPhotos = `<a href="${smsHref(`Photos for my ${phoneModel} quote (${first})`)}">text them to us</a>`;
 
+      /* 1. Our own server function: one email with the request and the photos */
+      if (S.apiEndpoint) {
+        try { await viaApi(); return okMsg(); } catch (x) { console.warn("Quote email route failed:", x.message); }
+      }
+      /* 2. Backup: Web3Forms, text only */
       if (S.web3formsKey) {
-        /* 1. The request itself goes through Web3Forms: fast and reliable */
-        let ok = false;
-        try { await viaWeb3(); ok = true; } catch (x) {}
-        /* 2. If that failed, try FormSubmit with everything */
-        if (!ok && S.formsubmitTo) {
-          try { await viaFormSubmit(`Free quote request: ${model}`, true); okMsg(); return; } catch (x) {}
-        }
-        if (!ok) {
-          btn.disabled = false; btn.textContent = "Send my free quote request";
-          return fail(`Your request didn't send. Check your connection and try again, or call us at ${S.phone}.`);
-        }
-        if (!photos.length) return okMsg();
-        /* 3. Photos follow in their own email through FormSubmit */
-        okMsg(`<span id="photo-status"> Sending your photos now...</span>`);
-        const ps = () => $("#photo-status");
         try {
-          if (!S.formsubmitTo) throw new Error("no photo route");
-          await viaFormSubmit(`Photos for ${first}'s ${phoneModel} quote`, false);
-          ps().textContent = " Your photos came through too.";
-        } catch (x) {
-          ps().innerHTML = ` Your photos didn't upload, so please ${textPhotos} instead.`;
-        }
+          await viaWeb3();
+          return okMsg(photos.length ? ` Your photos couldn't come through, so please ${textPhotos} and we'll add them to your quote.` : "");
+        } catch (x) {}
+        btn.disabled = false; btn.textContent = "Send my free quote request";
+        return fail(`Your request didn't send. Check your connection and try again, or call us at ${S.phone}.`);
       } else {
         const body = Object.entries(data).map(([k, v]) => `${k}: ${v}`).join("\n");
         const mail = `mailto:${S.email}?subject=${encodeURIComponent("Free quote request: " + model)}&body=${encodeURIComponent(body)}`;

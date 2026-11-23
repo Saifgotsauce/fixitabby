@@ -2,8 +2,8 @@
    Setup on Vercel (Project > Settings > Environment Variables):
      RESEND_API_KEY  your key from resend.com (free plan is enough)
      QUOTE_TO        the inbox that should receive quote requests
-     QUOTE_FROM      optional. Until you verify your own domain on Resend, leave it out:
-                     the default sender only delivers to the email you signed up to Resend with. */
+     QUOTE_FROM      optional. Until you verify your own domain on Resend, use "Fix It Abby <onboarding@resend.dev>":
+                     that sender only delivers to the email the Resend account was made with. */
 
 const MAX_PHOTOS = 3;
 const MAX_PHOTO_BYTES = 2.5 * 1024 * 1024;
@@ -40,6 +40,10 @@ export default async function handler(req, res) {
     })
   });
 
-  if (!r.ok) return res.status(502).json({ success: false, message: "Email service refused the request." });
+  if (!r.ok) {
+    let detail = "";
+    try { detail = (await r.json()).message || ""; } catch (e) {}
+    return res.status(502).json({ success: false, message: "Email service refused the request.", detail });
+  }
   return res.status(200).json({ success: true });
 }

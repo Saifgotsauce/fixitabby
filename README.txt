@@ -11,15 +11,16 @@ Files
 1. Shop details
    assets/data.js, top of the file: name, email, phone, area, hours, and the four sticky notes. Delete any note you don't want to promise.
 
-2. Getting quote requests with photos (free, no account)
-   a. In assets/data.js, set formsubmitTo to the shop's email address.
-   b. Send one test quote from the live website.
-   c. FormSubmit emails that address an "Activate form" link. Click it once.
-   d. Done. Every request now arrives by email with the customer's photos attached.
-   e. Optional: FormSubmit's activation email also gives a random code. Put that in
-      formsubmitTo instead of the email address so the address is hidden from the code.
-   If FormSubmit is ever down, requests still come through Web3Forms (text only).
-   (api/quote.js is an optional Resend-based alternative. You can ignore it.)
+2. Quote requests and photos
+   Requests (with up to 3 photos) are emailed by api/quote.js through Fix It Abby's own
+   Resend account. The settings live in Vercel > fixitabby > Settings > Environment Variables:
+     RESEND_API_KEY  the Fix It Abby Resend key
+     QUOTE_TO        the inbox that gets quote requests
+     QUOTE_FROM      "Fix It Abby <onboarding@resend.dev>" for now. Once fixitabby.ca is
+                     verified in Resend, change it to something like quotes@fixitabby.ca.
+   Until a domain is verified, Resend only delivers to the email the Resend account was made with,
+   so QUOTE_TO must be that address.
+   Backup: if that ever fails, Web3Forms sends the request text and the customer is asked to text photos.
 
 3. Reviews
    Paste real Google reviews into REVIEWS in assets/data.js and a reviews section appears.
