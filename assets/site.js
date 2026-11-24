@@ -12,7 +12,7 @@
     return `
     <header class="site-head">
       <div class="wrap">
-        <a class="logo" href="index.html" aria-label="${S.name}, iPhone repair in Abbotsford, home">${LOGO}<span>${S.name}</span></a>
+        <a class="logo" href="index.html" aria-label="${S.name}, iPhone repair in Abbotsford, home">${LOGO}<span class="lockup"><span class="wm">${S.name}</span><span class="tl">${S.tagline.replace("&", "&amp;")}</span></span></a>
         <nav class="nav" id="nav" aria-label="Main">
           ${link("index.html#repairs", "Repairs", "fixes")}
           ${link("repairs.html", "Find your iPhone", "repairs")}
@@ -59,7 +59,7 @@
             </ul>
           </div>
         </div>
-        <div class="bigmark" aria-hidden="true">Cellunet<span>.</span></div>
+        <div class="bigmark" aria-hidden="true"><span class="lockup"><span class="wm">Cellunet<span class="dot">.</span></span><span class="tl">${S.tagline.replace("&", "&amp;")}</span></span></div>
         <div class="legal">
           <span>&copy; ${new Date().getFullYear()} ${S.name}. iPhone repair in Abbotsford, BC.</span>
           <span>Independent repair shop, not affiliated with Apple. iPhone is a trademark of Apple Inc.</span>
@@ -71,6 +71,23 @@
   const hSlot = $("[data-header]"), fSlot = $("[data-footer]");
   if (hSlot) hSlot.outerHTML = header(hSlot.dataset.header);
   if (fSlot) fSlot.outerHTML = footer();
+  /* Stretch each tagline's letter spacing so it runs exactly as wide as "Cellunet" above it, like the logo */
+  const fitTaglines = () => $$(".lockup").forEach(l => {
+    const wm = l.querySelector(".wm"), tl = l.querySelector(".tl");
+    if (!wm || !tl) return;
+    tl.style.letterSpacing = "0px"; tl.style.fontSize = "";
+    const dot = wm.querySelector(".dot");
+    const target = wm.getBoundingClientRect().width - (dot ? dot.getBoundingClientRect().width : 0);
+    let natural = tl.getBoundingClientRect().width;
+    if (natural > target) {            /* too wide: shrink the tagline to fit instead */
+      tl.style.fontSize = `${parseFloat(getComputedStyle(tl).fontSize) * target / natural}px`;
+      natural = tl.getBoundingClientRect().width;
+    }
+    tl.style.letterSpacing = `${Math.max(0, (target - natural) / Math.max(1, tl.textContent.length - 1))}px`;
+  });
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(fitTaglines);
+  addEventListener("resize", fitTaglines);
+
   const menuBtn = $(".menu-btn"), nav = $("#nav");
   if (menuBtn) menuBtn.addEventListener("click", () => {
     const open = nav.classList.toggle("open");

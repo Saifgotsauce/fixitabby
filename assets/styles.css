@@ -243,7 +243,7 @@ p{margin:0}
 .site-foot ul{list-style:none;padding:0;margin:0;display:grid;gap:7px}
 .site-foot a{text-decoration:none}.site-foot a:hover{color:#fff;text-decoration:underline}
 .bigmark{margin-top:56px;padding-bottom:.06em;font-weight:700;font-family:var(--display);letter-spacing:-.045em;line-height:.9;font-size:min(16vw,220px);margin-bottom:.12em;color:#fff;white-space:nowrap}
-.bigmark span{color:#4D8BFF}
+.bigmark .dot{color:#4D8BFF}
 .legal{margin-top:24px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:13px;color:#8FA0C2}
 @media (max-width:700px){.site-foot .cols{grid-template-columns:1fr 1fr}.site-foot .cols>div:last-child{grid-column:1/-1}}
 
@@ -461,3 +461,14 @@ p{margin:0}
 .area-sign li{font-family:var(--cond);font-weight:700;font-size:30px;line-height:1.25;display:flex;align-items:center;gap:10px}
 .area-sign li::before{content:"";width:9px;height:9px;border-radius:50%;background:#fff;flex:none}
 @media (max-width:500px){.area-sign{padding:16px 18px 18px}.area-sign li{font-size:24px}}
+
+/* ---------- Logo lockup: wordmark with the tagline stretched to the same width, like his logo ---------- */
+.lockup{display:inline-grid;line-height:1}
+.lockup .wm,.lockup .tl{justify-self:start}
+.lockup .tl{display:block;font-family:var(--cond);font-weight:600;text-transform:uppercase;white-space:nowrap}
+.logo{padding-top:8px;padding-bottom:8px}
+.logo .wm{font-size:27px;line-height:1}
+.logo .tl{font-size:8.4px;margin-top:3px;color:#CFE0FF}
+.bigmark .lockup{display:inline-grid}
+.bigmark .tl{font-size:min(3.1vw,44px);color:#9FB8E8;margin-top:.12em;font-weight:600}
+@media (max-width:420px){.logo .wm{font-size:24px}.logo .tl{font-size:7.6px}}

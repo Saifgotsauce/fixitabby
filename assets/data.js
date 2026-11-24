@@ -6,6 +6,7 @@
 /* Shop details: change these once and every page updates. */
 window.SHOP = {
   name: "Cellunet",
+  tagline: "Mobile accessories & repair services",
   email: "",                            // no public shop email
   phone: "(778) 598-8079",
   phoneHref: "+17785988079",
